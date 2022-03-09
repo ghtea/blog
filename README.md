@@ -24,4 +24,4 @@
 - Storybook
 - Firebase
 - React Query
-- Theme UI
+- mui
