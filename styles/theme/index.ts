@@ -1,60 +1,11 @@
-import type {Theme} from "theme-ui"
-import {breakpoints} from "./breakpoints"
-import {colors} from "./colors"
+import {blue} from "@mui/material/colors";
+import {createTheme} from "@mui/system"
 
-export const theme: Theme = {
-  config: {
-    initialColorModeName: "light",
+export const theme = createTheme({
+  typography: {
+    fontFamily: "'Noto Sans KR', sans-serif",
   },
-  breakpoints,
-  colors,
-  space: [
-    0, // 0
-    2, // 1 
-    4, // 2
-    8, // 3
-    16, // 4
-    32, // 5
-    64, // 6
-    128, // 7
-    256, // 8
-    512, // 9
-  ],
-  fontSizes: {},
-  fonts: {},
-  fontWeights: {
-    thin: 100,
-    light: 300,
-    regular: 400,
-    medium: 500,
-    bold: 700,
-    black: 900,
+  palette: {
+    primary: blue["600"]
   },
-  lineHeights: {
-    headline: 1.5,
-    subtitle: 1.5,
-    paragraph: 1.5,
-    label: 1.5,
-  },
-  letterSpacings: {
-    headline: "normal",
-    subtitle: "normal",
-    paragraph: "normal",
-    label: "normal",
-  },
-  shadows: {},
-  borders: {},
-  sizes: {},
-  borderWidths: {},
-  borderStyles: {},
-  zIndices: {},
-  transitions: {},
-  styles: {
-    pre : {
-      "body": {
-        margin: "0 !important",
-        padding: "0 !important",
-      }
-    },
-  },
-}
+})
