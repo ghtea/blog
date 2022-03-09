@@ -5,6 +5,5 @@ const nextConfig = {
 
 // ref: https://uiwjs.github.io/react-md-editor/#support-nextjs
 const removeImports = require("next-remove-imports")();
-module.exports = removeImports({});
 
 module.exports = removeImports(nextConfig)

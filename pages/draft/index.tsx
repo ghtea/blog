@@ -11,15 +11,15 @@ const DraftPage: NextPage<DraftPageProps> = ({
 }) => {
   const [value, setValue] = useState("**Hello world!!!**")
   
-  const onChange = useCallback(()=>{
-    console.info("onChange called")
+  const handleChange = useCallback((value)=>{
+    setValue(value)
   },[])
 
   return (
     <div>
       <Editor
         value={value}
-        onChange={onChange}
+        onChange={handleChange}
       />
     </div>
   )
