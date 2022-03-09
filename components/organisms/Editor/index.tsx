@@ -36,9 +36,10 @@ export const Editor = ({
   const handleChange = useCallback(() => {
     if (!editorRef.current) return;
 
-    const instance = editorRef.current.getInstance();
+    console.log(editorRef.current)
+    // const instance = editorRef.current.getInstance(); // TODO: fix
 
-    onChange(instance.getMarkdown());
+    //onChange(instance.getMarkdown());
   }, [onChange]);
 
   return (

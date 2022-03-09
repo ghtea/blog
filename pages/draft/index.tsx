@@ -1,6 +1,6 @@
 import type {NextPage} from "next"
 import {useCallback, useMemo, useState} from "react"
-import {TuiEditor, EventMap, ToastUIEditor} from "components/Editor";
+import {Editor} from "components/organisms/Editor";
 
 
 type DraftPageProps = {
@@ -11,21 +11,15 @@ const DraftPage: NextPage<DraftPageProps> = ({
 }) => {
   const [value, setValue] = useState("**Hello world!!!**")
   
-  const events: ToastUIEditor.EventMap = useMemo(()=>{
-    return {
-      change: () => {}
-    }
-  }, [])
+  const onChange = useCallback(()=>{
+    console.info("onChange called")
+  },[])
 
   return (
     <div>
-      <TuiEditor
-        initialValue={value}
-        previewStyle="vertical"
-        height="600px"
-        initialEditType="markdown"
-        useCommandShortcut={true}
-        events={events}
+      <Editor
+        value={value}
+        onChange={onChange}
       />
     </div>
   )

@@ -2,9 +2,9 @@ import {Box, SxProps, Theme} from "@mui/system"
 import {MouseEventHandler, ReactNode, useMemo, useCallback} from "react"
 
 export type ButtonProps = {
-  children: ReactNode
+  children?: ReactNode
   className?: string
-  sx: SxProps<Theme>
+  sx?: SxProps<Theme>
   disabled?: boolean
   status?: ButtonStatus
   size?: ButtonSize
@@ -51,7 +51,7 @@ export const Button = ({
       ...sizeSx,
       ...statusSx,
       ...disabledSx,
-    })
+    } as SxProps<Theme>)
   },[disabled, rest.sx, size, status])
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = useCallback((event)=>{
@@ -64,7 +64,7 @@ export const Button = ({
       onClick={handleClick}
       component={"button"}
       {...rest}
-      sx={sx} // TODO: fix
+      sx={sx}
     >
       {children}
     </Box>
