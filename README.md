@@ -1,5 +1,5 @@
 # Blog by wiz
-- 프론트엔드 개발자 박재현의 블로그
+- 프론트엔드 개발자 박재현의 개발 블로그
 
 ## Features
 - MUST HAVE
@@ -16,10 +16,12 @@
     - 공개/비공개 설정 기능
     - 댓글기능
     - 연관 포스트 보여주기
+    - dark mode & light mode
 
 ## Skills
 - Next.js (React.js), TypeScript
 - TDD
 - Storybook
+- Firebase
 - React Query
 - Theme UI
