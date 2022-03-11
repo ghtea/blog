@@ -1,7 +1,7 @@
 ---
 name: Refactor
 about: ''
-title: ''
+title: 'Some code could be done better'
 labels: ''
 assignees: ''
 
