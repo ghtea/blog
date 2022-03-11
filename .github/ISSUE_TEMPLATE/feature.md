@@ -1,6 +1,6 @@
 ---
 name: Feature
-about: ''
+about: 'Some feature is wanted'
 title: ''
 labels: ''
 assignees: ''
@@ -10,4 +10,6 @@ assignees: ''
 ## Description
 
 
+**Todo**
+- [ ] add
 

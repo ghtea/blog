@@ -1,6 +1,6 @@
 ---
 name: Refactor
-about: ''
+about: 'Some code could be done better'
 title: ''
 labels: ''
 assignees: ''
@@ -11,3 +11,4 @@ assignees: ''
 
 
 ## Reason
+- 
