@@ -1,3 +1,3 @@
 export * from "./repository"
-export * from "./articleRepository"
+export * from "./article"
 export * from "./types"

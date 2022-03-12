@@ -1,6 +1,6 @@
 import {QueryConstraint} from "firebase/firestore";
-import {Repository, repository} from "./repository";
-import {ArticleDocument} from "./types";
+import {Repository, repository} from "../repository";
+import {ArticleDocument} from "../types";
 
 const ARTICLE_PATH = "articles"
 
