@@ -1,4 +1,4 @@
-import {getAnalytics} from "firebase/analytics";
+import {Analytics, getAnalytics} from "firebase/analytics";
 import {initializeApp} from "firebase/app";
 import {getFirestore} from "firebase/firestore";
 
@@ -14,4 +14,7 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const firestore = getFirestore();
-export const analytics = getAnalytics(app);
+export let analytics: Analytics
+if (app.name && typeof window !== "undefined") {
+  analytics = getAnalytics(app);
+}
