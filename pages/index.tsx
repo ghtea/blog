@@ -1,15 +1,16 @@
 import {Box} from "@mui/system"
 import type {NextPage} from "next"
-import {useQueries, useQuery} from "react-query"
+import {useQuery} from "react-query"
+import {LayoutMain} from "components/LayoutMain"
 import {getAllArticles} from "utils/firebase"
 
 const Home: NextPage = () => {
   const {status, data} = useQuery("getAllArticles", getAllArticles)
 
   return (
-    <div>
+    <LayoutMain>
       <div>
-
+        
       </div>
       <div>
         {(data?.docs||[]).map(item => (
@@ -18,7 +19,7 @@ const Home: NextPage = () => {
           </Box>
         ))}
       </div>
-    </div>
+    </LayoutMain>
   )
 }
 
