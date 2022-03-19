@@ -25,6 +25,12 @@ export default {
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
+export const Default = Template.bind({});
+Default.args = {
+  status: "default",
+  children: "Default",
+};
+
 export const Primary = Template.bind({});
 Primary.args = {
   status: "primary",
@@ -35,10 +41,4 @@ export const Error = Template.bind({});
 Error.args = {
   status: "error",
   children: "Error",
-};
-
-export const Neutral = Template.bind({});
-Neutral.args = {
-  status: "neutral",
-  children: "Neutral",
 };

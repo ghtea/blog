@@ -19,6 +19,7 @@
     "@mui/material": "^5.5.0",
     "@mui/system": "^5.5.0",
     "@uiw/react-md-editor": "^3.10.2",
+    "dayjs": "^1.11.0",
     "firebase": "^9.6.7",
     "next": "12.1.0",
     "next-remove-imports": "^1.0.6",

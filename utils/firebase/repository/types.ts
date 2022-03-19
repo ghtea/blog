@@ -1,6 +1,7 @@
 export type ArticleDocument = {
   title: string
   content: string
+  summary: string
   tags: string[]
   reactions: string[]
   author: string
