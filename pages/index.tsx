@@ -1,24 +1,35 @@
 import {Box} from "@mui/system"
 import type {NextPage} from "next"
-import {useQueries, useQuery} from "react-query"
+import {useMemo} from "react"
+import {useQuery} from "react-query"
+import {GalleryCardArticle} from "components/GalleryCardArticle"
+import {LayoutMain} from "components/LayoutMain"
 import {getAllArticles} from "utils/firebase"
 
 const Home: NextPage = () => {
   const {status, data} = useQuery("getAllArticles", getAllArticles)
 
-  return (
-    <div>
-      <div>
+  const articles = useMemo(()=>{
+    return (data?.docs || []).map(item => ({
+      id: item.id,
+      ...item.data()
+    }))
+  },[data?.docs])
 
+  return (
+    <LayoutMain>
+      <div>
+        
       </div>
       <div>
-        {(data?.docs||[]).map(item => (
-          <Box key={item.id}>
-            {item.data().title}
-          </Box>
+        {articles.map(item => (
+          <GalleryCardArticle 
+            key={item.id}
+            data={item}
+          />
         ))}
       </div>
-    </div>
+    </LayoutMain>
   )
 }
 

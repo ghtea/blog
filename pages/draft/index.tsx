@@ -1,8 +1,8 @@
 import type {NextPage} from "next"
 import {useCallback, useMemo, useState} from "react"
 import {useMutation} from "react-query";
-import {Button} from "components/atoms/Button";
-import {Editor} from "components/organisms/Editor";
+import {Button} from "components/Button";
+import {Editor} from "components/Editor";
 import {createArticle} from "utils/firebase";
 
 

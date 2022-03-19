@@ -1,7 +1,8 @@
 import {ThemeProvider} from "@mui/system"
 import type {AppProps} from "next/app"
 import {theme} from "styles/theme"
-import "styles/font.css"
+import "styles/reset.css"
+import "styles/global.css"
 import "utils/firebase"; 
 import {ReactQueryProvider} from "utils/reactQuery";
 

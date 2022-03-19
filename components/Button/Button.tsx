@@ -11,13 +11,13 @@ export type ButtonProps = {
   onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
-export type ButtonStatus = "neutral" | "primary" | "error"
+export type ButtonStatus = "default" | "primary" | "error"
 export type ButtonSize = "sm" | "md" | "lg"
 
 export const Button = ({
   children,
   disabled = false,
-  status = "neutral",
+  status = "default",
   size = "md",
   onClick,
   ...rest
@@ -30,9 +30,9 @@ export const Button = ({
     }
 
     const statusSx: SxProps<Theme> = {
-      ...(status === "neutral" ? {} : {}),
+      ...(status === "default" ? {} : {}),
       ...(status === "primary" ? {bgcolor: "primary"} : {}),
-      ...(status === "error" ? {bgcolor: "red"} : {}), // WIP:
+      ...(status === "error" ? {bgcolor: "error"} : {}),
     }
 
     const disabledSx: SxProps<Theme> = {
@@ -47,6 +47,7 @@ export const Button = ({
       outline: "none",
       appearance: "none",
       borderRadius: "4px",
+      cursor: "pointer",
       ...rest.sx,
       ...sizeSx,
       ...statusSx,
