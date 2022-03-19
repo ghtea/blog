@@ -10,10 +10,18 @@ export type LayoutMainProps = {
 export const LayoutMain = ({children}: LayoutMainProps) => {
   return (
     <Box>
-      <Box sx={{display: "flex", justifyContent: "space-between", flexDirection: "row"}}>
+      <Box sx={{
+        display: "flex", 
+        justifyContent: "space-between", 
+        flexDirection: "row", 
+        borderWidth: "1px", 
+        borderBottomStyle: "solid", 
+        borderColor: "border"
+      }}
+      >
         <Box sx={{display: "flex", width: "auto"}} >blog of wiz</Box>
         <Box sx={{display: "flex", width: "auto"}}>
-          <Box component={"span"}>create</Box>
+          <Box component={"button"}>create</Box>
         </Box>
       </Box>
       <Box>
