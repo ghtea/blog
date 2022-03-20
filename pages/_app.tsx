@@ -4,15 +4,18 @@ import {theme} from "styles/theme"
 import "styles/reset.css"
 import "styles/global.css"
 import "utils/firebase"; 
+import {AuthenticationProvider} from "utils/authentication"
 import {ReactQueryProvider} from "utils/reactQuery";
 
 function MyApp({Component, pageProps}: AppProps) {
   return (
-    <ReactQueryProvider>
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </ReactQueryProvider>
+    <AuthenticationProvider>
+      <ReactQueryProvider>
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </ReactQueryProvider>
+    </AuthenticationProvider>
   )
 }
 
