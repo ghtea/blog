@@ -1,8 +1,10 @@
 import {Box} from "@mui/system"
-import React, {ReactNode} from "react"
+import {useRouter} from "next/router";
+import React, {ReactNode, useCallback} from "react"
 import {Button} from "components/Button"
 import {Sidebar, SIDEBAR_WIDTH} from "components/Sidebar";
 import {Text} from "components/Text"
+import {useAuthentication} from "utils/authentication";
 
 const HEADER_HEIGHT = 56;
 
@@ -10,9 +12,18 @@ export type LayoutMainProps = {
   children: ReactNode
 }
 
-// ref: https://icecraft.tistory.com
-// ref: https://nasica1.tistory.com
 export const LayoutMain = ({children}: LayoutMainProps) => {
+  const {user, isSignedIn, signIn} = useAuthentication()
+  const router = useRouter()
+
+  const onCreateClick = useCallback(()=>{
+    router.push("/draft")
+  },[router])
+
+  const onSignInClick = useCallback(async()=>{
+    await signIn()
+  },[signIn])
+  
   return (
     <Box>
       <Box sx={{
@@ -31,8 +42,17 @@ export const LayoutMain = ({children}: LayoutMainProps) => {
       }}
       >
         <Text sx={{fontSize: "1.5rem"}}>blog of wiz</Text>
+        <Box sx={{flex: 1}}/>
+        <Box>
+          <Button onClick={onCreateClick}>create</Button>
+        </Box>
         <Box sx={{display: "flex", width: "auto"}}>
-          <Button>create</Button>
+          {isSignedIn 
+            ? <Box sx={{width: "40px", height: "40px"}}>
+              {user?.photoURL && <Box component={"img"} sx={{borderRadius: "50%"}} alt={"user-profile"} width={"40px"} height={"40px"} src={user?.photoURL || ""}></Box>}
+            </Box> 
+            : <Button onClick={onSignInClick}>signIn</Button>
+          }
         </Box>
       </Box>
       <Box sx={{margin: `${HEADER_HEIGHT}px`}}>

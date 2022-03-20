@@ -1,5 +1,5 @@
 import {getAuth, signOut as firebaseSignOut, signInWithPopup, GithubAuthProvider, User, onAuthStateChanged} from "firebase/auth";
-import {ReactNode, createContext, useMemo, useState, useEffect, useCallback} from "react"
+import {ReactNode, createContext, useMemo, useState, useEffect, useCallback, useContext} from "react"
 
 export type AuthenticationProviderProps = {
   children: ReactNode
@@ -9,19 +9,32 @@ type AuthenticationContextType = {
   user: User | undefined
   signIn: () => void
   signOut: () => void
+  isSignedIn: boolean
+  isAdmin: boolean
 }
 const initialAuthenticationContext = {
   user: undefined,
   signIn: () => {},
-  signOut: () => {}
+  signOut: () => {},
+  isSignedIn: false,
+  isAdmin: false,
 }
 const AuthenticationContext = createContext<AuthenticationContextType>(initialAuthenticationContext);
+export const useAuthentication = () => useContext(AuthenticationContext)
 
 const auth = getAuth();
 const githubProvider = new GithubAuthProvider();
 
 export const AuthenticationProvider = ({children}: AuthenticationProviderProps) => {
   const [user, setUser] = useState<User | undefined>(undefined)
+
+  useEffect(()=>{
+    console.log("user: ", user); // TODO: remove 
+  },[user])
+
+  const isSignedIn = useMemo(()=>Boolean(user),[user])
+
+  const isAdmin = useMemo(()=>user?.uid === process.env.NEXT_PUBLIC_ADMIN_USER_ID, [user?.uid])
 
   useEffect(()=>{
     onAuthStateChanged(auth, (user) => {
@@ -51,8 +64,10 @@ export const AuthenticationProvider = ({children}: AuthenticationProviderProps) 
       signIn,
       signOut,
       user,
+      isSignedIn,
+      isAdmin,
     })
-  },[signIn, signOut, user])
+  },[isAdmin, isSignedIn, signIn, signOut, user])
 
   return (
     <AuthenticationContext.Provider value={value}>

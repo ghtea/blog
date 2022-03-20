@@ -1,5 +1,5 @@
 import {Analytics, getAnalytics} from "firebase/analytics";
-import {initializeApp} from "firebase/app";
+import {getApp, getApps, initializeApp} from "firebase/app";
 import {getFirestore} from "firebase/firestore";
 
 const firebaseConfig = {
@@ -12,7 +12,7 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-export const app = initializeApp(firebaseConfig);
+export const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 export const firestore = getFirestore();
 export let analytics: Analytics
 if (app.name && typeof window !== "undefined") {
