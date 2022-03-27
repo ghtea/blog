@@ -1,10 +1,9 @@
 import {render, screen} from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-
 import {Button, ButtonProps} from "./Button"
 
 describe("Button", () => {
-  let onClick: ButtonProps["onClick"];
+  let onClick: jest.Mock<any, any>
   beforeEach(()=>{
     onClick = jest.fn()
   })

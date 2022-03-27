@@ -31,11 +31,11 @@ const TestGoalsPage: NextPage = () => {
   const handleCreate = useCallback(()=>{
     createArticleMutate({
       data: {
+        type: "draft",
+        author: "author",
         title: title,
         content: "test",
         tags: ["tag1"],
-        isPublic: false,
-        thumbnail: "",
       }
     })
   },[createArticleMutate, title])
