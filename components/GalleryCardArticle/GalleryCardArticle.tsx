@@ -15,8 +15,8 @@ export const GalleryCardArticle = ({
   const router = useRouter()
   
   const releasedAtText = useMemo(()=>{
-    return data.releasedAt ? Dayjs(data.releasedAt).format("YYYY-MM-DD") : ""
-  },[data.releasedAt])
+    return data.createdAt ? Dayjs(data.createdAt).format("YYYY-MM-DD") : ""
+  },[data.createdAt])
 
   const handleTitleClick = useCallback(()=>{
     router.push(`/article/${data.id}`)

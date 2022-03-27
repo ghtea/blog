@@ -1,4 +1,5 @@
 import {QueryConstraint} from "firebase/firestore";
+import {ArticleData} from "../types";
 import {articleRepository} from "./articleRepository";
 
 export const getAllArticles = () => {
@@ -9,23 +10,33 @@ export const getAllArticles = () => {
 
 export type CreateArticleArgs = {
   data: {
+    type: ArticleData["type"]
+    author: string
+    //
     title: string
     content: string
     tags: string[]
-    isPublic: boolean
-    thumbnail: string
+    thumbnail?: string
+    summary?: string
   }
 }
 export const createArticle = ({data}: CreateArticleArgs) => {
   return articleRepository.createArticle({data: {
+    type: data.type,
+    release: "",
+    draft: "",
+    //
+    author:  data.author,
+    //
     title: data.title,
     content: data.content,
     tags: data.tags,
-    reactions: [],
-    author: "tester",
-    updatedAt: new Date().getTime(),
+    thumbnail: data.thumbnail || "",
+    summary: data.summary || "",
+    //
     createdAt: new Date().getTime(),
-    isPublic: data.isPublic,
-    thumbnail: data.thumbnail,
+    updatedAt: new Date().getTime(),
+    //
+    reactions: []
   }})
 }
