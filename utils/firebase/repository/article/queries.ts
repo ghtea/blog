@@ -1,4 +1,4 @@
-import {QueryConstraint} from "firebase/firestore";
+import {QueryConstraint, where} from "firebase/firestore";
 import {ArticleData} from "../types";
 import {articleRepository} from "./articleRepository";
 
@@ -6,6 +6,17 @@ export const getAllArticles = () => {
   const queryConstraints: QueryConstraint[] = []
 
   return articleRepository.getArticles({queryConstraints})
+}
+
+export const getAllReleaseArticles = () => {
+  const queryConstraints: QueryConstraint[] = []
+  queryConstraints.push(where("type", "==", "release"))
+
+  return articleRepository.getArticles({queryConstraints})
+}
+
+export const getArticle = (id: string) => {
+  return articleRepository.getArticle({id})
 }
 
 export type CreateArticleArgs = {

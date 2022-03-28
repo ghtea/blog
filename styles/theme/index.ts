@@ -7,7 +7,7 @@ export const theme = createTheme({
     error: red["600"],
     border: grey["300"],
     text: "#212121", // grey-900
-    textHint: grey["300"],
+    textHint: grey["500"],
     textAlternative: "#ffffff",
     textPrimary: blue["300"],
     textError: red["300"],

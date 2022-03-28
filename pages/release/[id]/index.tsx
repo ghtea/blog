@@ -1,45 +1,49 @@
-import {GetStaticPaths, GetStaticProps, NextPage} from "next";
-import React from "react"
+import {GetServerSideProps, NextPage} from "next";
+import React, {useEffect} from "react"
 import {ArticleView} from "components/ArticleView";
-import {ArticleData} from "utils/firebase";
+import {LayoutMain} from "components/LayoutMain";
+import {ArticleData, getArticle} from "utils/firebase";
 
 type ReleaseIdPageProps = {
-  articleId: string
-  article: ArticleData
+  article: ArticleData | undefined
 }
 
 const ReleaseIdPage: NextPage<ReleaseIdPageProps> = ({
-  articleId
+  article
 })=> {
-
+  useEffect(()=>{
+    console.log("article: ", article); // TODO: remove 
+  },[article])
 
   return (
-    <ArticleView/>
+    <LayoutMain>
+      {article 
+        ? <ArticleView data={article} />
+        : "-"
+      }
+    </LayoutMain>
   )
 }
 
-export const getStaticPaths: GetStaticPaths = () => {
-  // TODO: fetch all release article from firebase
-  return {
-    paths: [{params: {id: "food"}}, {params: {id: "knowledge"}}],
-    fallback: true,
-  };
-}
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const articleId = context?.params?.id || ""
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const idParam = context?.params?.id || ""
+  const articleId = typeof idParam === "string" ? idParam : (idParam[0] || "")
 
   try {
-    const response = await getArticle
+    const response = await getArticle(articleId)
+    return {
+      props: {
+        article: {id: articleId, ...response.data()}
+      }
+    }
   }
   catch(error){
     console.error(error)
-  }
-
-  return {
-    props: {
-      articleId
-    },
+    return {
+      props: {
+        article: undefined
+      },
+    }
   }
 }
 
