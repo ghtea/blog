@@ -7,6 +7,9 @@ import "utils/firebase";
 import {AuthenticationProvider} from "utils/authentication"
 import {ReactQueryProvider} from "utils/reactQuery";
 import "github-markdown-css/github-markdown-light.css"
+import "styles/codemirror-themes/dracula.css"
+import "styles/codemirror-themes/mdn-like.css"
+import "codemirror/lib/codemirror.css"
 
 function MyApp({Component, pageProps}: AppProps) {
   return (
