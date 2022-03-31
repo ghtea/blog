@@ -2,10 +2,9 @@ import type {NextPage} from "next"
 import {useCallback, useMemo, useState} from "react"
 import {useMutation} from "react-query";
 import {Button} from "components/Button";
-import {Editor} from "components/Editor";
+import {Editor} from "components/EditorOld";
 import {useAuthentication} from "utils/authentication";
 import {createArticle} from "utils/firebase";
-
 
 type DraftPageProps = {
 }
