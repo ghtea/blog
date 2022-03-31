@@ -1,19 +1,20 @@
-import {MDEditorProps} from "@uiw/react-md-editor";
-import dynamic from "next/dynamic";
-import "@uiw/react-md-editor/markdown-editor.css";
-import "@uiw/react-markdown-preview/markdown.css";
+import {markdown, markdownLanguage} from "@codemirror/lang-markdown";
+import {languages} from "@codemirror/language-data";
+import CodeMirror, {ReactCodeMirrorProps} from "@uiw/react-codemirror"
+import {oneDark} from "./theme";
 
-const MDEditor = dynamic<MDEditorProps>(() => import("@uiw/react-md-editor"), {
-  ssr: false,
-});
-
-export type EditorProps = MDEditorProps
+export type EditorProps = ReactCodeMirrorProps
 
 export const Editor = ({
+  value,
   ...rest
-}:MDEditorProps)=> {
+}:EditorProps)=> {
   return (
-    <MDEditor
+    <CodeMirror
+      value={value}
+      height={"400px"}
+      theme={oneDark}
+      extensions={[markdown({base: markdownLanguage, codeLanguages: languages})]}
       {...rest}
     />
   )

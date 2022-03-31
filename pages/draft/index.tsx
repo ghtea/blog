@@ -6,7 +6,6 @@ import {Editor} from "components/Editor";
 import {useAuthentication} from "utils/authentication";
 import {createArticle} from "utils/firebase";
 
-
 type DraftPageProps = {
 }
 
