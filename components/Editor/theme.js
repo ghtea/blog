@@ -7,11 +7,13 @@ const chalky = "#e5c07b", coral = "#e06c75", cyan = "#56b6c2", invalid = "#fffff
 /**
 The editor theme styles for One Dark.
 */
+const DEFAULT_FONT_SIZE = 20;
+
 const oneDarkTheme = /*@__PURE__*/EditorView.theme({
   "&": {
     color: ivory,
     backgroundColor: background,
-    fontSize: "20px",
+    fontSize: `${DEFAULT_FONT_SIZE}px`,
   },
   "&.cm-focused":{
     outline: "none !important"
@@ -106,7 +108,11 @@ const oneDarkHighlightStyle = /*@__PURE__*/HighlightStyle.define([
     textDecoration: "underline"},
   {tag: tags.heading,
     fontWeight: "bold",
-    color: coral},
+    color: coral,
+  },
+  {tag: tags.heading1,
+    fontSize: `${DEFAULT_FONT_SIZE * 2}px`,
+  },
   {tag: [tags.atom, tags.bool, /*@__PURE__*/tags.special(tags.variableName)],
     color: whiskey},
   {tag: [tags.processingInstruction, tags.string, tags.inserted],
