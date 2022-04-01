@@ -4,9 +4,7 @@ import {EditorView} from "@codemirror/view";
 // Using https://github.com/one-dark/vscode-one-dark-theme/ as reference for the colors
 const chalky = "#e5c07b", coral = "#e06c75", cyan = "#56b6c2", invalid = "#ffffff", ivory = "#abb2bf", stone = "#7d8799", // Brightened compared to original to increase contrast
   malibu = "#61afef", sage = "#98c379", whiskey = "#d19a66", violet = "#c678dd", darkBackground = "#21252b", highlightBackground = "#2c313a", background = "#282c34", tooltipBackground = "#353a42", selection = "#3E4451", cursor = "#528bff";
-/**
-The editor theme styles for One Dark.
-*/
+
 const DEFAULT_FONT_SIZE = 20;
 
 const oneDarkTheme = /*@__PURE__*/EditorView.theme({
@@ -77,9 +75,7 @@ const oneDarkTheme = /*@__PURE__*/EditorView.theme({
     }
   }
 }, {dark: true});
-/**
-The highlighting style for code in the One Dark theme.
-*/
+
 const oneDarkHighlightStyle = /*@__PURE__*/HighlightStyle.define([
   {tag: tags.keyword,
     color: violet},
@@ -120,10 +116,7 @@ const oneDarkHighlightStyle = /*@__PURE__*/HighlightStyle.define([
   {tag: tags.invalid,
     color: invalid},
 ]);
-/**
-Extension to enable the One Dark theme (both the editor theme and
-the highlight style).
-*/
+
 const oneDark = [oneDarkTheme, oneDarkHighlightStyle];
 
-export {oneDark, oneDarkHighlightStyle, oneDarkTheme};
+export {oneDark};
