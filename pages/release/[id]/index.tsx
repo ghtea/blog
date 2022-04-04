@@ -1,7 +1,9 @@
+import {Box} from "@mui/system";
 import {GetServerSideProps, NextPage} from "next";
 import React, {useEffect} from "react"
 import {ArticleView} from "components/ArticleView";
 import {LayoutMain} from "components/LayoutMain";
+import {Sidebar, SIDEBAR_WIDTH} from "components/Sidebar";
 import {ArticleData, getArticle} from "utils/firebase";
 
 type ReleaseIdPageProps = {
@@ -17,10 +19,22 @@ const ReleaseIdPage: NextPage<ReleaseIdPageProps> = ({
 
   return (
     <LayoutMain>
-      {article 
-        ? <ArticleView data={article} />
-        : "-"
-      }
+      <Box sx={{display: "flex", flexDirection: "row", py: 2}}>
+      </Box>
+
+      <Box sx={{display: "flex", flexDirection: "row"}}>
+        <Box sx={{width: `${SIDEBAR_WIDTH}px`, display: ["none", null, null, "flex"]}}>
+        </Box>
+        <Box sx={{flex: 1, display: "flex", alignItems: "center"}}>
+          {article 
+            ? <ArticleView data={article} />
+            : "-"
+          }
+        </Box>
+        <Box sx={{width: `${SIDEBAR_WIDTH}px`, display: ["none", null, null, "flex"]}}>
+          <Sidebar/>
+        </Box>
+      </Box>
     </LayoutMain>
   )
 }
