@@ -2,7 +2,6 @@ import {Box} from "@mui/system"
 import {useRouter} from "next/router";
 import React, {ReactNode, useCallback} from "react"
 import {Button} from "components/Button"
-import {Sidebar, SIDEBAR_WIDTH} from "components/Sidebar";
 import {Text} from "components/Text"
 import {useAuthentication} from "utils/authentication";
 
@@ -25,7 +24,11 @@ export const LayoutMain = ({children}: LayoutMainProps) => {
   },[signIn])
   
   return (
-    <Box>
+    <Box sx={{
+      display: "flex",
+      flexDirection: "column",
+      height: "100vh"
+    }}>
       <Box sx={{
         position: "fixed",
         width: "100vw",
@@ -55,25 +58,13 @@ export const LayoutMain = ({children}: LayoutMainProps) => {
           }
         </Box>
       </Box>
-      <Box sx={{margin: `${HEADER_HEIGHT}px`}}>
-        {/* sub header */}
-        <Box sx={{display: "flex", flexDirection: "row", py: 2}}>
-          {/* <Box>home</Box>
-          <Box sx={{marginLeft: 2}}>github</Box> */}
-        </Box>
-
-        {/* main */}
-        <Box sx={{display: "flex", flexDirection: "row"}}>
-          <Box sx={{width: `${SIDEBAR_WIDTH}px`, display: ["none", null, null, "flex"]}}>
-            {/* left */}
-          </Box>
-          <Box sx={{flex: 1, display: "flex", alignItems: "center"}}>
-            {children}
-          </Box>
-          <Box sx={{width: `${SIDEBAR_WIDTH}px`, display: ["none", null, null, "flex"]}}>
-            <Sidebar/>
-          </Box>
-        </Box>
+      <Box sx={{
+        display: "flex", 
+        paddingTop: `${HEADER_HEIGHT}px`, 
+        flexGrow: 1, 
+        flexShrink: 1
+      }}>
+        {children}
       </Box>
     </Box>
   )
