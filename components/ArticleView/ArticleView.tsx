@@ -2,6 +2,7 @@ import {Box} from "@mui/system";
 import React from "react";
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
+import {MarkdownView} from "components/MarkdownView ";
 import {Text} from "components/Text"
 import {Dayjs} from "utils/dayjs";
 import {ArticleData} from "utils/firebase";
@@ -28,9 +29,7 @@ export const ArticleView = ({
       <Text status={"hint"}>{updatedAtText}</Text>
 
       <Box sx={{mt: 2}}>
-        <Box className="markdown-body">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{data.content}</ReactMarkdown>
-        </Box>
+        <MarkdownView content={data.content}/>
       </Box>
 
     </Box>

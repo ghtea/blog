@@ -5,9 +5,9 @@ import {useMutation} from "react-query";
 import {Button} from "components/Button";
 import {LayoutMain} from "components/LayoutMain";
 import {MarkdownEditor} from "components/MarkdownEditor";
+import {MarkdownView} from "components/MarkdownView ";
 import {useAuthentication} from "utils/authentication";
 import {createArticle} from "utils/firebase";
-import { MarkdownView } from "components/MarkdownView ";
 
 type DraftPageProps = {
 }
@@ -19,7 +19,9 @@ const DraftPage: NextPage<DraftPageProps> = ({
     onSuccess: () => console.log("succeeded")
   })
 
-  const [value, setValue] = useState("**Hello world!!!**")
+  const [value, setValue] = useState(
+    "**Hello world!!!** \n # test header \n ## second \n ### third hahaha \n - yo \n - yo \n - hmm `code` \n - www.naver.com \n - [Duck Duck Go](https://duckduckgo.com)"
+  )
   
   const editorContainerRef = useRef<HTMLElement>(null)
 

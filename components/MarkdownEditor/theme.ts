@@ -3,6 +3,7 @@ import {EditorView} from "@codemirror/view";
 import {colors as draculaColors} from "./colors/dracula";
 
 const DEFAULT_FONT_SIZE = 20;
+const DEFAULT_MARGIN_Y_PX = 4;
 
 type EditorThemeColors = typeof draculaColors
 
@@ -20,6 +21,10 @@ export const getGeneralTheme = (colors: EditorThemeColors) => EditorView.theme({
     fontFamily: "'Noto Sans KR', sans-serif",
     lineHeight: 1.5,
     padding: "16px"
+  },
+  ".cm-line": {
+    marginTop: `${DEFAULT_MARGIN_Y_PX}px`,
+    marginBottom: `${DEFAULT_MARGIN_Y_PX}px`,
   },
   // input
   ".cm-content": {
@@ -101,7 +106,6 @@ const getHighlightStyle = (colors: EditorThemeColors) => HighlightStyle.define([
   {tag: tags.regexp},
   {tag: tags.escape},
   {tag: tags.color},
-  {tag: tags.url},
   // keywords
   {tag: tags.keyword,
     color: colors.keyword
@@ -146,19 +150,25 @@ const getHighlightStyle = (colors: EditorThemeColors) => HighlightStyle.define([
   // headings
   {tag: tags.heading},
   {tag: tags.heading1,
+    display: "inline-flex",
     fontWeight: "bold",
     color: colors.heading,
     fontSize: `${DEFAULT_FONT_SIZE * 1.75}px`,
+    marginTop: "12px", // 12 + 4 = 16
   },
   {tag: tags.heading2,
+    display: "inline-flex",
     fontWeight: "bold",
     color: colors.heading,
     fontSize: `${DEFAULT_FONT_SIZE * 1.5}px`,
+    marginTop: "8px",
   },
   {tag: tags.heading3,
+    display: "inline-flex",
     fontWeight: "bold",
     color: colors.heading,
     fontSize: `${DEFAULT_FONT_SIZE * 1.25}px`,
+    marginTop: "4px",
   },
   {tag: tags.heading4,
     fontWeight: "bold",
@@ -185,9 +195,16 @@ const getHighlightStyle = (colors: EditorThemeColors) => HighlightStyle.define([
     fontWeight: "bold",
   },
   {tag: tags.link,
-    textDecoration: "underline"
+    textDecoration: "underline",
+    color: colors.link,
   },
-  {tag: tags.monospace},
+  {tag: tags.url},
+  {tag: tags.monospace, // code
+    color: colors.monospace,
+    background: colors.monospaceBackground,
+    padding: "2px 8px 2px",
+    borderRadius: "8px",
+  },
   {tag: tags.strikethrough,
     textDecoration: "line-through"
   },

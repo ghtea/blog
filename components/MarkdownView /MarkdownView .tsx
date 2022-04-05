@@ -2,9 +2,10 @@ import {Box} from "@mui/system";
 import React from "react";
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
-import {ArticleData} from "utils/firebase";
+import {Components, Wrapper} from "./Components";
+// import "github-markdown-css/github-markdown-light.css"
 
-type MarkdownViewProps = {
+export type MarkdownViewProps = {
   content: string
 }
 
@@ -13,8 +14,13 @@ export const MarkdownView  = ({
 }: MarkdownViewProps) =>{
 
   return (
-    <Box className="markdown-body">
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
-    </Box>
+    <Wrapper>
+      <ReactMarkdown 
+        remarkPlugins={[remarkGfm]}
+        components={Components}
+      >
+        {content}
+      </ReactMarkdown>
+    </Wrapper>
   );
 }
