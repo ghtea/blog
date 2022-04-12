@@ -20,7 +20,7 @@ const DraftPage: NextPage<DraftPageProps> = ({
   })
 
   const [value, setValue] = useState(
-    "**Hello world!!!** \n # test header \n ## second \n ### third hahaha \n - yo \n - yo \n - hmm `code` \n - www.naver.com \n - [Duck Duck Go](https://duckduckgo.com)"
+    "**Hello world!!!** \n# test header \n## second \n### third hahaha \n- yo \n- yo \n  - hmm `code` \n1. www.naver.com \n2. [Duck Duck Go](https://duckduckgo.com) \n*** \n> dd \n> ddd \n"
   )
   
   const editorContainerRef = useRef<HTMLElement>(null)

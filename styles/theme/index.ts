@@ -11,7 +11,10 @@ export const theme = createTheme({
     textAlternative: "#ffffff",
     textPrimary: blue["300"],
     textError: red["300"],
+    //
     code: grey["900"],
     codeBackground: grey["200"],
+    blockquoteBackground: grey["100"],
+    hrBackground: grey["300"],
   },
 })
