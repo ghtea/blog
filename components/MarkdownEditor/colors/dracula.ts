@@ -1,7 +1,7 @@
 import alpha from "color-alpha"
 
 export const palette = {
-  BG       : "#212121",
+  BG       : "#181818",
   FG       : "#ffffff",
   BORDER   : "#00000060",
   FGGRAY   : "#A3A3A3",
@@ -18,6 +18,7 @@ export const palette = {
   PURPLE   : "#BD93F9",
   RED      : "#FF5555",
   YELLOW   : "#F1FA8C",
+  // WIP: maybe remove followings
   COLOR0       : "#21222C",
   COLOR1       : "#FF5555",
   COLOR2       : "#50FA7B",
@@ -80,7 +81,9 @@ export const colors = {
   emphasis: palette["YELLOW"],
   strong: palette["ORANGE"],
   meta: palette["GREEN"], // WIP:
-
+  monospace: palette["FG"], // WIP:
+  monospaceBackground: palette["SELECTION"], // WIP:
+  
   // WIP:
   def: palette["PURPLE"],
   qualifier: palette["YELLOW"], // WIP:

@@ -2,7 +2,8 @@ import {HighlightStyle, tags} from "@codemirror/highlight";
 import {EditorView} from "@codemirror/view";
 import {colors as draculaColors} from "./colors/dracula";
 
-const DEFAULT_FONT_SIZE = 20;
+const DEFAULT_FONT_SIZE_REM = 1.25;
+const DEFAULT_PADDING_Y_PX = 4;
 
 type EditorThemeColors = typeof draculaColors
 
@@ -11,7 +12,7 @@ export const getGeneralTheme = (colors: EditorThemeColors) => EditorView.theme({
   "&": {
     color: colors.font,
     backgroundColor: colors.background,
-    fontSize: `${DEFAULT_FONT_SIZE}px`,
+    fontSize: `${DEFAULT_FONT_SIZE_REM}rem`,
   },
   "&.cm-focused":{
     outline: "none !important"
@@ -21,9 +22,14 @@ export const getGeneralTheme = (colors: EditorThemeColors) => EditorView.theme({
     lineHeight: 1.5,
     padding: "16px"
   },
+  ".cm-line": {
+    paddingTop: `${DEFAULT_PADDING_Y_PX}px`,
+    paddingBottom: `${DEFAULT_PADDING_Y_PX}px`,
+  },
   // input
   ".cm-content": {
-    caretColor: colors.cursor
+    caretColor: colors.cursor,
+    padding: 0,
   },
   "&.cm-focused .cm-cursor": {
     borderLeftColor: colors.cursor
@@ -101,7 +107,6 @@ const getHighlightStyle = (colors: EditorThemeColors) => HighlightStyle.define([
   {tag: tags.regexp},
   {tag: tags.escape},
   {tag: tags.color},
-  {tag: tags.url},
   // keywords
   {tag: tags.keyword,
     color: colors.keyword
@@ -146,19 +151,28 @@ const getHighlightStyle = (colors: EditorThemeColors) => HighlightStyle.define([
   // headings
   {tag: tags.heading},
   {tag: tags.heading1,
+    display: "inline-flex",
     fontWeight: "bold",
     color: colors.heading,
-    fontSize: `${DEFAULT_FONT_SIZE * 1.75}px`,
+    fontSize: `${DEFAULT_FONT_SIZE_REM * 1.75}rem`,
+    paddingTop: `${DEFAULT_PADDING_Y_PX * 5 - DEFAULT_PADDING_Y_PX}px`,
+    paddingBottom: `${DEFAULT_PADDING_Y_PX * 4 - DEFAULT_PADDING_Y_PX}px`,
   },
   {tag: tags.heading2,
+    display: "inline-flex",
     fontWeight: "bold",
     color: colors.heading,
-    fontSize: `${DEFAULT_FONT_SIZE * 1.5}px`,
+    fontSize: `${DEFAULT_FONT_SIZE_REM * 1.5}rem`,
+    paddingTop: `${DEFAULT_PADDING_Y_PX * 4 - DEFAULT_PADDING_Y_PX}px`,
+    paddingBottom: `${DEFAULT_PADDING_Y_PX * 3 - DEFAULT_PADDING_Y_PX}px`,
   },
   {tag: tags.heading3,
+    display: "inline-flex",
     fontWeight: "bold",
     color: colors.heading,
-    fontSize: `${DEFAULT_FONT_SIZE * 1.25}px`,
+    fontSize: `${DEFAULT_FONT_SIZE_REM * 1.25}rem`,
+    paddingTop: `${DEFAULT_PADDING_Y_PX * 3 - DEFAULT_PADDING_Y_PX}px`,
+    paddingBottom: `${DEFAULT_PADDING_Y_PX * 2 - DEFAULT_PADDING_Y_PX}px`,
   },
   {tag: tags.heading4,
     fontWeight: "bold",
@@ -173,7 +187,9 @@ const getHighlightStyle = (colors: EditorThemeColors) => HighlightStyle.define([
     color: colors.heading,
   },
   //
-  {tag: tags.contentSeparator},
+  {tag: tags.contentSeparator,
+    color: colors.hr,
+  },
   {tag: tags.list},
   {tag: tags.quote},
   {tag: tags.emphasis,
@@ -185,9 +201,16 @@ const getHighlightStyle = (colors: EditorThemeColors) => HighlightStyle.define([
     fontWeight: "bold",
   },
   {tag: tags.link,
-    textDecoration: "underline"
+    textDecoration: "underline",
+    color: colors.link,
   },
-  {tag: tags.monospace},
+  {tag: tags.url},
+  {tag: tags.monospace, // code
+    color: colors.monospace,
+    background: colors.monospaceBackground,
+    padding: "2px 8px 2px",
+    borderRadius: "8px",
+  },
   {tag: tags.strikethrough,
     textDecoration: "line-through"
   },
