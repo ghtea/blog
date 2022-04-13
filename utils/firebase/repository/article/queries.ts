@@ -1,6 +1,6 @@
 import {QueryConstraint, where} from "firebase/firestore";
 import {ArticleData} from "../types";
-import {articleRepository} from "./articleRepository";
+import {articleRepository} from "./repository";
 
 export const getAllArticles = () => {
   const queryConstraints: QueryConstraint[] = []
