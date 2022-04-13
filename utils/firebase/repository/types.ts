@@ -8,6 +8,7 @@ export type ArticleDocument = {
   title: string
   content: string
   tags: string[]
+  keywords: string[]
   thumbnail: string
   summary: string
   //
@@ -17,5 +18,18 @@ export type ArticleDocument = {
   reactions: string[]
 }
 export type ArticleData = ArticleDocument & {
+  id: string
+}
+
+export type KeywordDocument = {
+  author: string
+  //
+  name: string
+  search: string
+  //
+  createdAt: number
+  updatedAt: number
+}
+export type KeywordData = KeywordDocument & {
   id: string
 }
