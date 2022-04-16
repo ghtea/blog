@@ -6,12 +6,12 @@ export type ButtonProps = {
   className?: string
   sx?: SxProps<Theme>
   disabled?: boolean
-  status?: ButtonStatus
+  status?: ButtonColor
   size?: ButtonSize
   onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
-export type ButtonStatus = "default" | "primary" | "error"
+export type ButtonColor = "default" | "primary" | "error"
 export type ButtonSize = "sm" | "md" | "lg"
 
 export const Button = ({
@@ -45,7 +45,7 @@ export const Button = ({
       border: "none",
       background: "transparent",
       outline: "none",
-      appearance: "none",
+      Color: "none",
       borderRadius: "4px",
       cursor: "pointer",
       ...rest.sx,
