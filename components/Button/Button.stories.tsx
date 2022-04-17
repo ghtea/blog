@@ -3,14 +3,14 @@ import React from "react";
 
 import {Button, ButtonSize} from "./Button";
 
-const argSizeOptions: ButtonSize[] = ["sm", "md", "lg"] 
+const sizes: ButtonSize[] = ["sm", "md", "lg"] 
 
 export default {
   title: "atoms/Button",
   component: Button,
   argTypes: {
     size: {
-      options: argSizeOptions,
+      options: sizes,
       control: {type: "radio"},
     },
     disabled: {
