@@ -4,24 +4,24 @@ import React from "react";
 
 import {Chip, ChipAppearance, ChipColor, ChipSize} from "./Chip";
 
-const argSizeOptions: ChipSize[] = ["sm", "md", "lg"] 
-const argColorOptions: ChipColor[] = ["default", "primary"] 
-const argAppearanceOptions: ChipAppearance[] = ["filled", "outlined", "subtle"] 
+const sizes: ChipSize[] = ["sm", "md", "lg"] 
+const colors: ChipColor[] = ["default", "primary"] 
+const appearances: ChipAppearance[] = ["filled", "outlined", "subtle"] 
 
 export default {
   title: "atoms/Chip",
   component: Chip,
   argTypes: {
     size: {
-      options: argSizeOptions,
+      options: sizes,
       control: {type: "radio"},
     },
     color: {
-      options: argColorOptions,
+      options: colors,
       control: {type: "radio"},
     },
     appearance: {
-      options: argAppearanceOptions,
+      options: appearances,
       control: {type: "radio"},
     },
     clickable: {
@@ -45,27 +45,14 @@ Primary.args = {
 };
 
 export const AllChips = () => {
-  const chips: JSX.Element[] = []
-  argSizeOptions.forEach(size=>{
-    argColorOptions.forEach(color=>{
-      argAppearanceOptions.forEach(appearance=>{
-        chips.push(
-          <Box sx={{padding: 1}}>
-            <Chip size={size} color={color} appearance={appearance}>{`${color}-${appearance}`}</Chip>
-          </Box>
-        )
-      })
-    })
-  })
-
   return (
     <Box sx={{
       display: "flex",
       flexDirection: "row"
     }}>
-      {argColorOptions.map(color=>(
-        <Box key={color}>{argAppearanceOptions.map(appearance=>(
-          <Box key={appearance}>{argSizeOptions.map(size=>(
+      {colors.map(color=>(
+        <Box key={color}>{appearances.map(appearance=>(
+          <Box key={appearance}>{sizes.map(size=>(
             <Box key={`${color}-${appearance}-${size}`} sx={{padding: 1}} >
               <Chip color={color} appearance={appearance} size={size}>
                 {`${color}-${appearance}-${size}`}
