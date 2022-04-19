@@ -37,6 +37,7 @@ const DraftPage: NextPage<DraftPageProps> = ({
       author: user.uid,
       title: "testing aritcle",
       content: value,
+      keywords: [],
       tags: [],
     }})
   },[createArticleMutate, user, value])

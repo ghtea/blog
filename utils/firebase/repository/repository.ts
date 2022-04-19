@@ -10,7 +10,7 @@ export class Repository {
 
   createDocument<DocumentType>({
     path,
-    data,
+    data, 
   }: CreateDocumentArguments<DocumentType>) {
     return addDoc<DocumentType>(
       collection(this.firestore, path) as CollectionReference<DocumentType>, 

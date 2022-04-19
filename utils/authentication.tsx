@@ -1,5 +1,6 @@
 import {getAuth, signOut as firebaseSignOut, signInWithPopup, GithubAuthProvider, User, onAuthStateChanged} from "firebase/auth";
 import {ReactNode, createContext, useMemo, useState, useEffect, useCallback, useContext} from "react"
+import {app} from "./firebase";
 
 export type AuthenticationProviderProps = {
   children: ReactNode
@@ -22,7 +23,7 @@ const initialAuthenticationContext = {
 const AuthenticationContext = createContext<AuthenticationContextType>(initialAuthenticationContext);
 export const useAuthentication = () => useContext(AuthenticationContext)
 
-const auth = getAuth();
+const auth = getAuth(app);
 const githubProvider = new GithubAuthProvider();
 
 export const AuthenticationProvider = ({children}: AuthenticationProviderProps) => {
