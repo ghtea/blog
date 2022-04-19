@@ -27,6 +27,7 @@ export type CreateArticleArgs = {
     title: string
     content: string
     tags: string[]
+    keywords: string[]
     thumbnail?: string
     summary?: string
   }
@@ -42,6 +43,7 @@ export const createArticle = ({data}: CreateArticleArgs) => {
     title: data.title,
     content: data.content,
     tags: data.tags,
+    keywords: data.keywords,
     thumbnail: data.thumbnail || "",
     summary: data.summary || "",
     //
