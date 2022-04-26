@@ -11,7 +11,6 @@ module.exports = {
   ],
   "framework": "@storybook/react",
   webpackFinal: async (config) => {
-    // mocking imports
     config.resolve.plugins = [
       ...(config.resolve.plugins || []),
       new TsconfigPathsPlugin({

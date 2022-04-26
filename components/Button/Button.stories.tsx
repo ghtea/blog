@@ -27,18 +27,18 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  status: "default",
+  color: "default",
   children: "Default",
 };
 
 export const Primary = Template.bind({});
 Primary.args = {
-  status: "primary",
+  color: "primary",
   children: "Primary",
 };
 
 export const Error = Template.bind({});
 Error.args = {
-  status: "error",
+  color: "error",
   children: "Error",
 };

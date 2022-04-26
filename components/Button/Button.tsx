@@ -1,12 +1,12 @@
 import {Box, SxProps, Theme} from "@mui/system"
-import {MouseEventHandler, ReactNode, useMemo, useCallback} from "react"
+import {MouseEventHandler, ReactNode, useMemo, useCallback, memo, forwardRef} from "react"
 
 export type ButtonProps = {
   children?: ReactNode
   className?: string
   sx?: SxProps<Theme>
   disabled?: boolean
-  status?: ButtonColor
+  color?: ButtonColor
   size?: ButtonSize
   onClick?: MouseEventHandler<HTMLButtonElement>
 }
@@ -17,7 +17,7 @@ export type ButtonSize = "sm" | "md" | "lg"
 export const Button = ({
   children,
   disabled = false,
-  status = "default",
+  color = "default",
   size = "md",
   onClick,
   ...rest
@@ -29,10 +29,10 @@ export const Button = ({
       ...(size === "lg" ? {fontSize: "1.25rem", px: 2, py: 1} : {}),
     }
 
-    const statusSx: SxProps<Theme> = {
-      ...(status === "default" ? {} : {}),
-      ...(status === "primary" ? {bgcolor: "primary"} : {}),
-      ...(status === "error" ? {bgcolor: "error"} : {}),
+    const colorSx: SxProps<Theme> = {
+      ...(color === "default" ? {} : {}),
+      ...(color === "primary" ? {bgcolor: "primary"} : {}),
+      ...(color === "error" ? {bgcolor: "error"} : {}),
     }
 
     const disabledSx: SxProps<Theme> = {
@@ -50,10 +50,10 @@ export const Button = ({
       cursor: "pointer",
       ...rest.sx,
       ...sizeSx,
-      ...statusSx,
+      ...colorSx,
       ...disabledSx,
     } as SxProps<Theme>)
-  },[disabled, rest.sx, size, status])
+  },[disabled, rest.sx, size, color])
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = useCallback((event)=>{
     if (disabled) return;
