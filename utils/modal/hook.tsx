@@ -1,34 +1,30 @@
-import {FunctionComponent, useCallback, useEffect, useMemo, useRef} from "react"
-import {v4 as uuidV4} from "uuid";
+import {FunctionComponent, useCallback, useEffect, useMemo, useRef, useState} from "react"
+import {Optional} from "utility-types";
 import {useModalContext} from "./provider"
 
-export const useModal = <T extends FunctionComponent<any>>(component: T)=>{
+export const useModal = <T extends FunctionComponent<any>>(component: T, id?: string)=>{
   const {upsertModal, removeModal} = useModalContext()
 
-  const id = useMemo(()=>{
-    return uuidV4()
-  },[])
+  const modalId = useMemo(()=>id || component.name, [component.name, id])
 
-  const renderModal = useCallback((props: Parameters<typeof component>[0]) =>{
+  const renderModal = useCallback((props: Optional<Parameters<typeof component>[0], "onClose">) =>{
     upsertModal({
-      id,
+      id: modalId,
       component,
-      props,
+      props: {
+        onClose: ()=>removeModal(modalId),
+        ...props
+      },
     })
-  },[component, id, upsertModal])
+  },[component, modalId, removeModal, upsertModal])
 
   // remove modal when current component is unmounted
   useEffect(()=>(()=>{
-    removeModal(id)
-  }),[id, removeModal])
-
-  const renderModalRef = useRef<typeof renderModal>(renderModal)
-  useEffect(()=>{
-    renderModalRef.current = renderModal
-  },[renderModal])
+    removeModal(modalId)
+  }),[modalId, removeModal])
 
   return useMemo(()=>({
-    id,
-    renderModal: renderModalRef.current,
-  }), [id])
+    id: modalId,
+    renderModal,
+  }), [modalId, renderModal])
 }

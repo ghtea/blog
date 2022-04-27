@@ -16,6 +16,9 @@ export const palette = {
   codeBackground: grey["200"],
   blockquoteBackground: grey["100"],
   hrBackground: grey["300"],
+  // modal
+  modalOutsideBackground: "rgba(0,0,0,0.5)",
+  modalBackground: "#ffffff",
   // chips
   chip: {
     "filled-default": {
