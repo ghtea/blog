@@ -1,9 +1,11 @@
+import {Box} from "@mui/system";
 import {ComponentStory, ComponentMeta} from "@storybook/react";
-import React from "react";
+import React, {Fragment} from "react";
 
-import {Button, ButtonSize} from "./Button";
+import {Button, ButtonSize, ButtonAppearance} from "./Button";
 
 const sizes: ButtonSize[] = ["sm", "md", "lg"] 
+const appearances: ButtonAppearance[] = ["default", "primary", "primary-subtle", "error", "error-subtle"] 
 
 export default {
   title: "atoms/Button",
@@ -13,11 +15,16 @@ export default {
       options: sizes,
       control: {type: "radio"},
     },
+    appearance: {
+      options: appearances,
+      control: {type: "radio"},
+    },
     disabled: {
       control: {type: "boolean"},
     },
   },
   args: {
+    appearance: "default",
     disabled: false,
     size: "md",
   },
@@ -27,18 +34,31 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  status: "default",
+  appearance: "default",
   children: "Default",
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
-  status: "primary",
-  children: "Primary",
-};
-
-export const Error = Template.bind({});
-Error.args = {
-  status: "error",
-  children: "Error",
-};
+export const AllButtons = () => {
+  return (
+    <Box sx={{
+      display: "flex",
+      flexDirection: "row"
+    }}>{appearances.map(appearance=>(
+        <Box key={appearance}>{sizes.map(size=>(
+          <Fragment key={`${appearance}-${size}`}>
+            <Box sx={{padding: 1}} >
+              <Button appearance={appearance} size={size}>
+                {`${appearance}-${size}`}
+              </Button>
+            </Box>
+            <Box  sx={{padding: 1}} >
+              <Button appearance={appearance} size={size} disabled={true}>
+                {"disabled"}
+              </Button>
+            </Box>
+          </Fragment>
+        ))}</Box>
+      ))}
+    </Box>
+  )
+}

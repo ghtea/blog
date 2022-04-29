@@ -1,52 +1,130 @@
-import {blue, grey, red} from "@mui/material/colors";
+import {colors} from "./colors"
+
+const {white, black, gray, indigo: primary, rose: error, green: success} = colors
 
 export const palette = {
-  primary: blue["600"],
-  error: red["600"],
-  border: grey["300"],
-  hover: grey["100"],
+  primary: primary["600"],
+  error: error["600"],
+  border: gray["300"],
+  hover: gray["100"],
   // text
-  text: grey["900"],
-  textHint: grey["500"],
-  textAlternative: "#ffffff",
-  textPrimary: blue["300"],
-  textError: red["300"],
+  text: gray["900"],
+  textHint: gray["500"],
+  textAlternative: white,
+  textPrimary: primary["400"],
+  textError: error["300"],
   //
-  code: grey["900"],
-  codeBackground: grey["200"],
-  blockquoteBackground: grey["100"],
-  hrBackground: grey["300"],
+  code: gray["900"],
+  codeBackground: gray["200"],
+  blockquoteBackground: gray["100"],
+  hrBackground: gray["300"],
+  // buttons
+  button: {
+    "default": {
+      text: gray["700"],
+      background: white,
+      border: gray["300"],
+      hover: {
+        text: gray["800"],
+        background: gray["50"],
+      },
+      focus: {
+        outline: gray["100"],
+      }
+    },
+    "default-disabled": {
+      text: gray["300"],
+      background: white,
+      border: gray["200"],
+    },
+    "primary": {
+      text: white,
+      background: primary["600"],
+      hover: {
+        background: primary["700"],
+      },
+      focus: {
+        outline: primary["100"],
+      }
+    },
+    "primary-disabled": {
+      text: white,
+      background: primary["200"],
+    },
+    "primary-subtle": {
+      text: primary["700"],
+      background: primary["50"],
+      hover: {
+        background: primary["100"],
+      },
+      focus: {
+        outline: primary["100"],
+      }
+    },
+    "primary-subtle-disabled": {
+      text: primary["300"],
+      background: primary["25"],
+    },
+    "error": {
+      text: white,
+      background: error["600"],
+      hover: {
+        background: error["700"],
+      },
+      focus: {
+        outline: error["100"],
+      }
+    },
+    "error-disabled": {
+      text: white,
+      background: error["200"],
+    },
+    "error-subtle": {
+      text: error["700"],
+      background: error["50"],
+      hover: {
+        background: error["100"],
+      },
+      focus: {
+        outline: error["100"],
+      }
+    },
+    "error-subtle-disabled": {
+      text: error["300"],
+      background: error["25"],
+    },
+  },
   // chips
   chip: {
     "filled-default": {
-      border: grey["800"],
-      background: grey["800"],
-      text: "#ffffff",
+      border: gray["800"],
+      background: gray["800"],
+      text: white,
     },
     "filled-primary": {
-      border: blue["800"],
-      background: blue["800"],
-      text: "#ffffff",
+      border: primary["600"],
+      background: primary["800"],
+      text: white,
     },
     "outlined-default": {
-      border: grey["900"],
+      border: gray["900"],
       background: "transparent",
-      text: grey["900"],
+      text: gray["900"],
     },
     "outlined-primary": {
-      border: blue["900"],
+      border: primary["800"],
       background: "transparent",
-      text: blue["900"],
+      text: primary["800"],
     },
     "subtle-default": {
-      border: grey["600"],
-      background: grey["100"],
-      text: grey["900"],
+      border: gray["600"],
+      background: gray["100"],
+      text: gray["900"],
     },
     "subtle-primary": {
-      border: blue["600"],
-      background: blue["100"],
-      text: blue["900"],
+      border: primary["500"],
+      background: primary["100"],
+      text: primary["800"],
     },
   },
 };
