@@ -1,19 +1,16 @@
 import {Box} from "@mui/system"
 import type {NextPage} from "next"
 import {useCallback, useMemo} from "react"
-import {useMutation, useQuery} from "react-query"
-import {Button} from "components/Button"
+import {useQuery} from "react-query"
 import {LayoutMain} from "components/LayoutMain"
-import {useAuthentication} from "utils/authentication"
-import {createKeyword, getAllKeywords} from "utils/firebase"
+import {ModalKeywordUpsert} from "components/ModalKeywordUpsert"
+import {TableKeyword} from "components/TableKeyword"
+import {getAllKeywords} from "utils/firebase"
+import {useModal} from "utils/modal"
 
 const KeywordsPage: NextPage = () => {
-  const {user} = useAuthentication()
-
   const {data} = useQuery("getAllKeywords", getAllKeywords)
-  const {mutate: createKeywordMutate, status: createKeywordStatus} = useMutation(createKeyword, {
-    onSuccess: () => console.log("succeeded")
-  })
+  const {toggleModal} = useModal(ModalKeywordUpsert, {})
 
   const keywords = useMemo(()=>{
     return (data?.docs || []).map(item => ({
@@ -22,31 +19,14 @@ const KeywordsPage: NextPage = () => {
     }))
   },[data?.docs])
 
-  const handleCreate = useCallback(()=>{
-    if (!user) return;
-
-    createKeywordMutate({
-      data: {
-        author: user.uid,
-        name: "new name",
-        search: "new search",
-      }
-    })
-  },[createKeywordMutate, user])
+  const handleClickRow = useCallback(()=>{
+    toggleModal(true)
+  },[toggleModal])
 
   return (
     <LayoutMain>
-      <Box>
-        <Button onClick={handleCreate}>create</Button>
-      </Box>
-      <Box>
-        {keywords.map(item => (
-          <Box key={item.id}>
-            <Box>{item.name}</Box>
-            <Box>{item.search}</Box>
-            <Box>{item.author}</Box>
-          </Box>
-        ))}
+      <Box sx={{paddingX: 2, maxWidth: "600px"}}>
+        <TableKeyword keywords={keywords} onClickRow={handleClickRow}/>
       </Box>
     </LayoutMain>
   )

@@ -46,9 +46,9 @@ export const Modal = ({
         display: "flex", 
         flexDirection:"column", 
         justifyContent: "center",
+        alignItems: "center", 
         width: "100%",
         height: "100%",
-        alignItems: "center", 
         backgroundColor: "modal.outside.background",
       }}
     >
@@ -91,15 +91,19 @@ export const Modal = ({
           {children}
         </Box>
         <Box sx={{width: 1}}>
-          <Box sx={{width: 1, margin: "-6px", display: "flex"}}>
+          <Box sx={{margin: "-6px", display: "flex", alignItems: "center"}}>
             {cancel && (
               <Box sx={{flex: 1, padding: "6px"}}>
-                <Button width={"100%"}>{cancel.children || "Cancel"}</Button>
+                <Button width={"100%"} onClick={cancel.onClick}>
+                  {cancel.children || "Cancel"}
+                </Button>
               </Box>
             )}
             {confirm && (
               <Box sx={{flex: 1, padding: "6px"}}>
-                <Button width={"100%"} appearance={"primary"}>{confirm.children || "Confirm"}</Button>
+                <Button width={"100%"} appearance={"primary"} onClick={confirm.onClick}>
+                  {confirm.children || "Confirm"}
+                </Button>
               </Box>
             )}
           </Box>

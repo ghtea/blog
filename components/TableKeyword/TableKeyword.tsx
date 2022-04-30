@@ -4,16 +4,16 @@ import {KeywordData} from "utils/firebase"
 
 export type TableKeywordProps = {
   keywords: KeywordData[],
-  onRowClick?: () => void
+  onClickRow?: () => void
 }
 
 export const TableKeyword = ({
   keywords,
-  onRowClick
+  onClickRow
 }: TableKeywordProps) => {
-  const handleRowClick = useCallback(()=>{
-    onRowClick?.()
-  },[onRowClick])
+  const handleClickRow = useCallback(()=>{
+    onClickRow?.()
+  },[onClickRow])
 
   return (
     <Box sx={{display: "flex", flexDirection:"column",}}>
@@ -33,15 +33,15 @@ export const TableKeyword = ({
       </Box>
       <Box sx={{display: "flex", flexDirection:"column",}}>
         {keywords.map(item=>(
-          <Box key={item.id} onClick={handleRowClick} sx={{
+          <Box key={item.id} onClick={handleClickRow} sx={{
             display: "flex", 
             flexDirection:"row", 
             px: 1,
-            cursor: onRowClick ? "pointer" : "default",
+            cursor: onClickRow ? "pointer" : "default",
             borderWidth: 1,
             borderBottomStyle: "solid", 
             borderColor: "border.default",
-            ":hover": onRowClick ? {
+            ":hover": onClickRow ? {
               backgroundColor: "hover"
             } : {}
           }}>

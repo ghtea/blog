@@ -30,7 +30,7 @@ const HeaderOne = ({children}: {children: ReactNode}) => (
       fontSize: `${DEFAULT_FONT_SIZE_REM * 1.75}rem`,
       borderBottomStyle: "solid",
       borderWidth: "1px",
-      borderColor: "border",
+      borderColor: "border.default",
     }}>
       {children}
     </Box>
@@ -46,7 +46,7 @@ const HeaderTwo = ({children}: {children: ReactNode}) => (
       fontSize: `${DEFAULT_FONT_SIZE_REM * 1.5}rem`,
       borderBottomStyle: "solid",
       borderWidth: "1px",
-      borderColor: "border",
+      borderColor: "border.default",
     }}>
       {children}
     </Box>
@@ -62,7 +62,7 @@ const HeaderThree = ({children}: {children: ReactNode}) => (
       fontSize: `${DEFAULT_FONT_SIZE_REM * 1.25}rem`,
       borderBottomStyle: "solid",
       borderWidth: "1px",
-      borderColor: "border",
+      borderColor: "border.default",
     }}>
       {children}
     </Box>

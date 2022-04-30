@@ -40,7 +40,7 @@ export const LayoutMain = ({children}: LayoutMainProps) => {
         alignItems: "center",
         borderWidth: "1px", 
         borderBottomStyle: "solid", 
-        borderColor: "border",
+        borderColor: "border.default",
         px: 2,
       }}
       >
@@ -60,6 +60,7 @@ export const LayoutMain = ({children}: LayoutMainProps) => {
       </Box>
       <Box sx={{
         display: "flex", 
+        flexDirection: "column",
         paddingTop: `${HEADER_HEIGHT}px`, 
         flexGrow: 1, 
         flexShrink: 1
