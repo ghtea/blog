@@ -1,23 +1,43 @@
 import {colors} from "./colors"
 
-const {white, black, gray, indigo: primary, rose: error, green: success} = colors
+const {
+  white, 
+  black, 
+  gray, 
+  indigo: primary, 
+  rose: error, 
+  green: success,
+  grayTransparent,
+} = colors
 
 export const palette = {
   primary: primary["600"],
   error: error["600"],
-  border: gray["300"],
   hover: gray["100"],
+  border: {
+    default: gray["300"]
+  },
   // text
-  text: gray["900"],
-  textHint: gray["500"],
-  textAlternative: white,
-  textPrimary: primary["400"],
-  textError: error["300"],
+  text: {
+    default: gray["900"],
+    hint: gray["500"],
+    alternative: white,
+    primary: primary["400"],
+    error: error["300"],
+  },
   //
-  code: gray["900"],
-  codeBackground: gray["200"],
-  blockquoteBackground: gray["100"],
-  hrBackground: gray["300"],
+  code: {
+    text: gray["900"],
+    background: gray["200"],
+  },
+  blockquote: gray["100"],
+  hr: gray["300"],
+  modal: {
+    background: white,
+    outside: {
+      background: grayTransparent["900"]["56"]
+    }
+  },
   // buttons
   button: {
     "default": {
@@ -129,32 +149,7 @@ export const palette = {
   },
 };
 
-
 export type Paltte = typeof palette
 
-export type PaltteColor = (
-  keyof Paltte | 
-  `chip.${keyof Paltte["chip"]}.${keyof Paltte["chip"][keyof Paltte["chip"]]}`
-)
 
-/**
- * Palette Color Record
- */
-export const pcr = (() => {
-  const newPaletteColorRecord = {}
-
-  function addColorKey (record: Record<string, any>, stackedKey: string, paletteColorRecord: Record<string, string>) {
-    Array.from(Object.entries(record)).forEach(([key, value])=>{
-      const newKey = stackedKey ? `${stackedKey}.${key}` : key
-
-      if (typeof value === "string"){
-        paletteColorRecord[newKey] = newKey
-      } else if (typeof value === "object") {
-        addColorKey(value, newKey, paletteColorRecord)
-      }
-    })
-  }
-  addColorKey(palette, "", newPaletteColorRecord)
-
-  return newPaletteColorRecord as Record<PaltteColor, PaltteColor>
-})();
+console.log(grayTransparent["900"]["56"])

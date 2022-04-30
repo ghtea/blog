@@ -1,32 +1,47 @@
 import {Box} from "@mui/system"
-import React, {useCallback, MouseEventHandler, useEffect, useRef} from "react"
+import React, {useCallback, MouseEventHandler, useEffect, useRef, ReactNode} from "react"
 import {Button} from "components/Button"
-import {pcr} from "styles/theme"
+import {Icon} from "components/Icon"
 
 export type ModalProps = {
   onClose: ()=>void
   // header
   title?: string
+  // content
+  children: ReactNode
   // footer
-  onConfirm?: ()=>void
+  cancel?: {
+    children?: string
+    onClick?: ()=>void
+  }
+  confirm?: {
+    children?: string
+    onClick?: ()=>void
+  }
 }
 
 export const Modal = ({
   onClose,
   title,
-  onConfirm,
+  children,
+  confirm,
+  cancel,
 }: ModalProps) => {
-  const handleOutsideClick: MouseEventHandler<HTMLDivElement> = useCallback((event)=>{
+  const handleClickOutside: MouseEventHandler<HTMLDivElement> = useCallback((event)=>{
     onClose()
   },[onClose])
 
-  const handleModalClick: MouseEventHandler<HTMLDivElement> = useCallback((event)=>{
+  const handleClickClose: MouseEventHandler<HTMLDivElement> = useCallback((event)=>{
+    onClose()
+  },[onClose])
+
+  const handleClickModal: MouseEventHandler<HTMLDivElement> = useCallback((event)=>{
     event.stopPropagation()
   },[])
 
   return (
     <Box 
-      onClick={handleOutsideClick}
+      onClick={handleClickOutside}
       sx={{
         display: "flex", 
         flexDirection:"column", 
@@ -34,16 +49,16 @@ export const Modal = ({
         width: "100%",
         height: "100%",
         alignItems: "center", 
-        backgroundColor: pcr["modalOutsideBackground"],
+        backgroundColor: "modal.outside.background",
       }}
     >
       <Box 
-        onClick={handleModalClick}
+        onClick={handleClickModal}
         sx={{
           display: "flex", 
           flexDirection:"column", 
           alignItems: "center",
-          backgroundColor: pcr["modalBackground"],
+          backgroundColor: "modal.background",
           width: "100%",
           maxWidth: "540px",
           height: "auto",
@@ -51,22 +66,43 @@ export const Modal = ({
           padding: 3
         }}
       >
-        <Box>
-          <Box sx={{fontSize: "1.5rem", fontWeight: "bold", marginBottom: 4}}>
-            {"header"}
+        <Box sx={{
+          width: 1, 
+          display: "flex", 
+          justifyContent: "space-between",
+          alignItems: "center", 
+          marginBottom: 4,
+        }}>
+          <Box sx={{fontSize: "1.5rem", fontWeight: "bold"}}>
+            {title}
+          </Box>
+          <Box onClick={handleClickClose} sx={{cursor: "pointer"}}>
+            <Icon name={"x"}/>
           </Box>
         </Box>
         <Box 
           sx={{
+            width: 1,
             flexGrow: 1, 
-            flexShrink: 1
+            flexShrink: 1,
+            marginBottom: 4
           }}
         >
-          {"content"}
+          {children}
         </Box>
-        <Box sx={{marginTop: 4}}>
-          <Button>cancel</Button>
-          <Button color={"primary"}>confirm</Button>
+        <Box sx={{width: 1}}>
+          <Box sx={{width: 1, margin: "-6px", display: "flex"}}>
+            {cancel && (
+              <Box sx={{flex: 1, padding: "6px"}}>
+                <Button width={"100%"}>{cancel.children || "Cancel"}</Button>
+              </Box>
+            )}
+            {confirm && (
+              <Box sx={{flex: 1, padding: "6px"}}>
+                <Button width={"100%"} appearance={"primary"}>{confirm.children || "Confirm"}</Button>
+              </Box>
+            )}
+          </Box>
         </Box>
       </Box>
     </Box>

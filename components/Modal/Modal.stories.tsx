@@ -3,7 +3,6 @@ import {ComponentStory, ComponentMeta} from "@storybook/react";
 import React from "react";
 
 import {Modal} from "./Modal";
-import {ModalPortal} from "components/ModalPortal";
 
 export default {
   title: "atoms/Modal",
@@ -11,6 +10,10 @@ export default {
   argTypes: {
   },
   args: {
+    title: "title",
+    children: "content",
+    confirm: {},
+    cancel: {},
   },
 } as ComponentMeta<typeof Modal>;
 
