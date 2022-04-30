@@ -36,6 +36,7 @@ const TestGoalsPage: NextPage = () => {
         title: title,
         content: "test",
         tags: ["tag1"],
+        keywords: [],
       }
     })
   },[createArticleMutate, title])

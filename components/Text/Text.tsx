@@ -1,5 +1,5 @@
 import {Box, SxProps, Theme} from "@mui/system"
-import {MouseEventHandler, ReactNode, useMemo, useCallback} from "react"
+import {MouseEventHandler, ReactNode, useMemo} from "react"
 
 export type TextProps = {
   children?: ReactNode
@@ -18,11 +18,11 @@ export const Text = ({
 }: TextProps) => {
   const sx: SxProps<Theme> = useMemo(()=>{
     const statusSx: SxProps<Theme> = {
-      ...(status === "default" ? {color: "text"} : {}),
-      ...(status === "hint" ? {color: "textHint"} : {}),
-      ...(status === "alternative" ? {color: "textAlternative"} : {}),
-      ...(status === "primary" ? {color: "textPrimary"} : {}),
-      ...(status === "error" ? {color: "textError"} : {}),
+      ...(status === "default" ? {color: "text.default"} : {}),
+      ...(status === "hint" ? {color: "text.hint"} : {}),
+      ...(status === "alternative" ? {color: "text.alternative"} : {}),
+      ...(status === "primary" ? {color: "text.primary"} : {}),
+      ...(status === "error" ? {color: "text.error"} : {}),
     }
 
     return ({
