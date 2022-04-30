@@ -1,0 +1,13 @@
+// ref: https://stackoverflow.com/a/71249500/11681543
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+     "noEmit": true,
+     "types": ["cypress"]
+  },
+  "include": [
+      "../node_modules/cypress",
+      "./**/*.ts"
+  ],
+  "exclude": [],
+}

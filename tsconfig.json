@@ -19,7 +19,7 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": "./",
-    "types": ["cypress", "jest"]
+    "types": ["jest"]
   },
   "include": [
     "next-env.d.ts",
@@ -27,6 +27,7 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "cypress"
   ]
 }

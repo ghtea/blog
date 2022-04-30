@@ -1,6 +1,5 @@
 import {Box} from "@mui/system"
-import React, {useCallback, useEffect} from "react"
-import {pcr} from "styles/theme"
+import React, {useCallback} from "react"
 import {KeywordData} from "utils/firebase"
 
 export type TableKeywordProps = {
@@ -24,9 +23,9 @@ export const TableKeyword = ({
           flexDirection:"row",
           borderWidth: 1, 
           borderBottomStyle: "solid", 
-          borderColor: pcr["border"],
+          borderColor: "border.default",
           px: 1,
-          color: pcr["textHint"],
+          color: "text.hint"
         }}
       >
         <Box sx={{flexGrow: 1, flexShrink: 1, flexBasis: 0, py: 1}}>name</Box>
@@ -41,7 +40,7 @@ export const TableKeyword = ({
             cursor: onRowClick ? "pointer" : "default",
             borderWidth: 1,
             borderBottomStyle: "solid", 
-            borderColor: pcr["border"],
+            borderColor: "border.default",
             ":hover": onRowClick ? {
               backgroundColor: "hover"
             } : {}

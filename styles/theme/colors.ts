@@ -1,5 +1,7 @@
+import {getTransparentColors} from "./utils";
+
 // ref: Untitled UI v2.6
-export const colors = {
+export const defaultColors = {
   white: "#FFFFFF",
   black: "#000000",
   gray: { // gray modern
@@ -54,4 +56,16 @@ export const colors = {
     "800": "#095C37",
     "900": "#084C2E",
   },
+}
+
+export const transparentColors = {
+  grayTransparent: {
+    "500": getTransparentColors(defaultColors.gray["500"]),
+    "900": getTransparentColors(defaultColors.gray["900"])
+  },
+}
+
+export const colors = {
+  ...defaultColors,
+  ...transparentColors,
 }
