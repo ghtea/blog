@@ -1,9 +1,10 @@
+import {Box} from "@mui/system";
 import {ComponentStory, ComponentMeta} from "@storybook/react";
 import React from "react";
 
-import {ModalKeywordUpsert} from "./ModalKeywordUpsert";
+import {ModalKeywordUpsertView} from "./ModalKeywordUpsert.view";
 
-const KEYWORDS =
+const KEYWORD =
   {
     id: "dfsagghe",
     author: "j2uiF7KDhvWcJYYfvNoKf253c9k2",
@@ -15,17 +16,23 @@ const KEYWORDS =
 
 export default {
   title: "atoms/ModalKeywordUpsert",
-  component: ModalKeywordUpsert,
+  component: ModalKeywordUpsertView,
   argTypes: {
   },
   args: {
-    keywords: KEYWORDS,
-    onRowClick: undefined
+    keyword: KEYWORD,
+    keywordValue: "keyword 1",
+    searchValue: "keyword 1, keyword one",
+    cancel: {},
+    confirm: {},
   },
-} as ComponentMeta<typeof ModalKeywordUpsert>;
+} as ComponentMeta<typeof ModalKeywordUpsertView>;
 
-const Template: ComponentStory<typeof ModalKeywordUpsert> = (args) => <ModalKeywordUpsert {...args} />;
-
+const Template: ComponentStory<typeof ModalKeywordUpsertView> = (args) => (
+  <Box sx={{width: "100%", height: "100vh"}}>
+    <ModalKeywordUpsertView {...args} />
+  </Box>
+)
 export const Default = Template.bind({});
 Default.args = {
   

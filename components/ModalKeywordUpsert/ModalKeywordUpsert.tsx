@@ -1,9 +1,9 @@
-import {Box} from "@mui/system"
-import React, {useCallback, useEffect, useMemo} from "react"
+import React, {useCallback, useEffect, useMemo, useState} from "react"
 import {useMutation} from "react-query"
-import {Modal, ModalProps} from "components/Modal"
+import {ModalKeywordUpsertView, ModalKeywordUpsertViewProps} from "./ModalKeywordUpsert.view"
+import {ModalProps} from "components/Modal"
 import {useAuthentication} from "utils/authentication"
-import {createKeyword, KeywordData} from "utils/firebase"
+import {createKeyword, KeywordData, updateKeyword} from "utils/firebase"
 
 export type ModalKeywordUpsertProps = {
   onClose: ModalProps["onClose"]
@@ -20,49 +20,85 @@ export const ModalKeywordUpsert = ({
 }: ModalKeywordUpsertProps) => {
   const {user} = useAuthentication()
   const {mutate: createKeywordMutate, status: createKeywordStatus} = useMutation(createKeyword)
+  const {mutate: updateKeywordMutate, status: updateKeywordStatus} = useMutation(updateKeyword)
 
-  const cancel = useMemo(()=>{
+  const [nameValue, setNameValue] = useState(keyword?.name || "")
+  const [searchValue, setSearchValue] = useState(keyword?.search || "")
+  
+  const confirmDisabled = !setNameValue || !setNameValue
+
+  useEffect(()=>{
+    setNameValue(keyword?.name || "");
+  },[keyword?.name])
+
+  useEffect(()=>{
+    setSearchValue(keyword?.search || "");
+  },[keyword?.search])
+
+  const cancel: ModalKeywordUpsertViewProps["cancel"] = useMemo(()=>{
     return {onClick: onCancel}
   },[onCancel])
 
   // confirm
   const handleClickConfirm = useCallback(()=>{
-    if (!user) return;
+    if (!user || confirmDisabled) return;
 
-    createKeywordMutate({
-      data: {
-        author: user.uid,
-        name: "new name",
-        search: "new search",
-      }
-    })
-  },[createKeywordMutate, user])
+    if (keyword?.id){
+      updateKeywordMutate({
+        id: keyword?.id,
+        data: {
+          author: user.uid,
+          name: nameValue,
+          search: searchValue,
+        }
+      })
+    }
+    else {
+      createKeywordMutate({
+        data: {
+          author: user.uid,
+          name: nameValue,
+          search: searchValue,
+        }
+      })
+    }
+  },[confirmDisabled, createKeywordMutate, keyword?.id, nameValue, searchValue, updateKeywordMutate, user])
 
-  const confirm = useMemo(()=>{
+  const confirm: ModalKeywordUpsertViewProps["confirm"] = useMemo(()=>{
     const hanleClick = () => {
       handleClickConfirm()
       onConfirm?.()
     }
 
-    return {onClick: hanleClick}
-  },[handleClickConfirm, onConfirm])
+    return {
+      disabled: confirmDisabled,
+      onClick: hanleClick
+    }
+  },[confirmDisabled, handleClickConfirm, onConfirm])
 
   useEffect(()=>{
-    if (createKeywordStatus === "success"){
+    if (createKeywordStatus === "success" || updateKeywordStatus=== "success"){
       onClose()
     }
-  }, [createKeywordStatus, onClose])
+  }, [createKeywordStatus, onClose, updateKeywordStatus])
+
+  const handleChangeName:ModalKeywordUpsertViewProps["onChangeName"]  = useCallback((value)=>{
+    setNameValue(value)
+  },[])
+
+  const handleChangeSearch:ModalKeywordUpsertViewProps["onChangeSearch"] = useCallback((value)=>{
+    setSearchValue(value)
+  },[])
 
   return (
-    <Modal 
-      title={"Keyword"}
+    <ModalKeywordUpsertView
       onClose={onClose}
       cancel={cancel}
       confirm={confirm}
-    >
-      <Box>
-
-      </Box>
-    </Modal>
+      nameValue={nameValue}
+      onChangeName={handleChangeName}
+      searchValue={searchValue}
+      onChangeSearch={handleChangeSearch}
+    />
   )
 }

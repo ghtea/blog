@@ -79,8 +79,8 @@ export const TextInput = ({
         outlineStyle: focused ? "solid" : "none",
         outlineWidth: "4px",
         outlineColor: "inherit",
-        paddingX: "14px",
-        paddingY: "10px",
+        paddingX: "12px",
+        paddingY: 1,
         borderStyle: "solid",
       }}>
         <Box 

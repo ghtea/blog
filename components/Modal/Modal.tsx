@@ -15,6 +15,7 @@ export type ModalProps = {
     onClick?: ()=>void
   }
   confirm?: {
+    disabled?: boolean
     children?: string
     onClick?: ()=>void
   }
@@ -101,7 +102,7 @@ export const Modal = ({
             )}
             {confirm && (
               <Box sx={{flex: 1, padding: "6px"}}>
-                <Button width={"100%"} appearance={"primary"} onClick={confirm.onClick}>
+                <Button width={"100%"} appearance={"primary"} disabled={confirm.disabled} onClick={confirm.onClick}>
                   {confirm.children || "Confirm"}
                 </Button>
               </Box>

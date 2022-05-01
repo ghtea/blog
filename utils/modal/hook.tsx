@@ -28,11 +28,11 @@ export const useModal = <T extends FunctionComponent<any>>(
       id: modalId,
       component,
       props: {
+        ...newProps,
         onClose: ()=>{
           setIsOpened(false)
           newProps.onClose?.()
         },
-        ...newProps
       },
     })
   },[component, modalId, upsertModal])
