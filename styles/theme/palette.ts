@@ -17,6 +17,9 @@ export const palette = {
   border: {
     default: gray["300"]
   },
+  outline: {
+    primary: primary["100"]
+  },
   // text
   text: {
     default: gray["900"],
@@ -36,6 +39,24 @@ export const palette = {
     background: white,
     outside: {
       background: grayTransparent["900"]["56"]
+    }
+  },
+  // inputs
+  input: {
+    default: {
+      icon: gray["400"],
+      border: gray["300"],
+      focus: {
+        border: primary["300"],
+        outline: primary["100"]
+      }
+    },
+    error: {
+      border: error["300"],
+      focus: {
+        border: error["300"],
+        outline: error["100"]
+      }
     }
   },
   // buttons

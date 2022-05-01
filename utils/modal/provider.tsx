@@ -1,7 +1,6 @@
+import {Box} from "@mui/system";
 import React, {createContext, FunctionComponent, useCallback, useContext, useEffect, useState} from "react";
 import {Optional} from "utility-types"
-
-import {v4 as uuidV4} from "uuid";
 
 export type ModalData<T extends FunctionComponent> = {
   id: string;
@@ -70,6 +69,34 @@ export const ModalProvider: FunctionComponent = ({children}) => {
       upsertModal,
     }}>
       {children}
+      <Box sx={{
+        position: "fixed",
+        width: "100vw",
+        height: "100vh",
+        top: 0,
+        left: 0,
+        display: modalDatas.length < 1 ? "none" : "flex"
+      }}>
+        {modalDatas.map(item => (
+          <Box key={`modal-${item.id}`} sx={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}>
+            {item.component 
+              ? (
+                <item.component
+                  id={item.id}
+                  {...item.props}
+                />
+              ) 
+              : null
+            }
+          </Box>
+        ))}
+      </Box>
     </ModalContext.Provider>
   );
 };
