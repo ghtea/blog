@@ -77,7 +77,7 @@ export const Modal = ({
             {title}
           </Box>
           <Box onClick={handleClickClose} sx={{cursor: "pointer"}}>
-            <Icon name={"x"}/>
+            <Icon name={"close"}/>
           </Box>
         </Box>
         <Box 

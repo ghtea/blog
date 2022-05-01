@@ -19,7 +19,7 @@ export const Icon = ({
   const Component = nameComponentMap[name]
 
   return (
-    <Box sx={{color}}>
+    <Box sx={{color, fontSize: 0}}>
       <Component size={size} title={title} {...rest}/>
     </Box>
   )
