@@ -171,6 +171,3 @@ export const palette = {
 };
 
 export type Paltte = typeof palette
-
-
-console.log(grayTransparent["900"]["56"])

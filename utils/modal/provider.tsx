@@ -38,6 +38,7 @@ export const ModalProvider: FunctionComponent = ({children}) => {
   },[]);
 
   const upsertModal = useCallback((dataInput: UpsertModalDataInput<FunctionComponent<any>>) => {
+    console.log("upsertModal")
     const getUpsertedModalDatas = (previousModalData: typeof modalDatas)=>{
       const modalIndex = previousModalData.findIndex(item => item.id === dataInput.id)
 

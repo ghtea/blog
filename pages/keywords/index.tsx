@@ -1,6 +1,6 @@
 import {Box} from "@mui/system"
 import type {NextPage} from "next"
-import {useCallback, useEffect, useMemo, useState} from "react"
+import {useCallback, useMemo, useState} from "react"
 import {useQuery} from "react-query"
 import {LayoutMain} from "components/LayoutMain"
 import {ModalKeywordUpsert} from "components/ModalKeywordUpsert"
@@ -28,6 +28,7 @@ const KeywordsPage: NextPage = () => {
 
   const handleClickRow = useCallback((keyword: KeywordData)=>{
     toggleModal(true)
+    
     setModalKeywordData(keyword)
   },[toggleModal])
 
