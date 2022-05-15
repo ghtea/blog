@@ -1,5 +1,6 @@
 import {FunctionComponent, useCallback, useEffect, useMemo, useState} from "react"
-import {shallowEqualObjects} from "shallow-equal";import {Optional} from "utility-types";
+import shallowequal from "shallowequal";
+import {Optional} from "utility-types";
 import {useModalContext} from "./provider"
 
 type Props<T extends FunctionComponent<any>> = Parameters<T>[0]
@@ -17,7 +18,7 @@ export const useModal = <T extends FunctionComponent<any>>(
   const [memoizedProps, setMemoizedProps] = useState<ModalProps>(props)
 
   useEffect(()=>{
-    setMemoizedProps(prev => !shallowEqualObjects(props, prev) ? props : prev)  
+    setMemoizedProps(prev => !shallowequal(props, prev) ? props : prev)  
   },[props])
 
   const modalId = useMemo(()=>id || component.name, [component.name, id])
