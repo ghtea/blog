@@ -4,7 +4,7 @@ import React from "react";
 
 import {Icon, IconName} from "./Icon";
 
-const names: IconName[] = ["x", "plus"] 
+const names: IconName[] = ["plus", "close", "close-circle", "more"] 
 
 export default {
   title: "atoms/Icon",
@@ -21,7 +21,7 @@ const Template: ComponentStory<typeof Icon> = (args) => <Icon {...args} />;
 
 export const IconX = Template.bind({});
 IconX.args = {
-  name: "x",
+  name: "close",
   children: "IconX",
 };
 

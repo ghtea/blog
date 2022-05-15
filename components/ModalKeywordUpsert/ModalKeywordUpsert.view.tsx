@@ -22,10 +22,10 @@ export const ModalKeywordUpsertView = ({
       title={"Keyword"}
       {...modalProps}
     >
-      <Box sx={{width: "100%", maxWidth: "300px"}}>
+      <Box sx={{width: 1, maxWidth: "300px"}}>
         <TextInput value={nameValue} onChange={onChangeName} label={"name"}/>
       </Box>
-      <Box sx={{width: "100%", marginTop: 2}}>
+      <Box sx={{width: 1, marginTop: 2}}>
         <TextInput value={searchValue} onChange={onChangeSearch} label={"search"}/>
       </Box>
     </Modal>
