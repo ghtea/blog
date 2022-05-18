@@ -26,10 +26,12 @@ const Template: ComponentStory<typeof DropdownMenu> = (args) => {
     setIsOpened(prev => !prev)
   }
 
-  return (<>
-    <Box ref={toggleRef} onClick={handleClickToggle} component={"button"}>toggle</Box>
-    <DropdownMenu {...args} toggleRef={toggleRef} isOpened={isOpened} setIsOpened={setIsOpened} />
-  </>)
+  return (
+    <Box sx={{position: "relative"}}>
+      <Box ref={toggleRef} onClick={handleClickToggle} component={"button"}>toggle</Box>
+      <DropdownMenu {...args} toggleRef={toggleRef} isOpened={isOpened} setIsOpened={setIsOpened} />
+    </Box>
+  )
 };
 
 export const Default = Template.bind({});

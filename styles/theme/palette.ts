@@ -37,6 +37,9 @@ export const palette = {
   hr: gray["300"],
   modal: {
     background: white,
+    outside: {
+      background: grayTransparent["900"]["56"]
+    }
   },
   dropdownMenu: {
     background: white,

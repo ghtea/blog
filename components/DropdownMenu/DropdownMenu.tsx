@@ -36,14 +36,14 @@ export const DropdownMenu = ({
   return (<>
     {isOpened 
       ? (
-        <Box sx={{position: "absolute", top: 0, left: 0, transform: "translate(120px, 100%)"}}>
+        <Box sx={{position: "absolute", top: "100%", left: 0}}>
           <Box
             ref={menuRef}
             sx={{
               display: "inline-flex",
               flexDirection: "column", 
               borderRadius: "12px", 
-              background: "dropdownMenu.background",
+              backgroundColor: "dropdownMenu.background",
               borderColor: "dropdownMenu.border",
               borderStyle: "solid",
               borderWidth: "1px",
@@ -51,7 +51,8 @@ export const DropdownMenu = ({
             }}>
             {items.map((item, index)=>{
               const handleClick: MouseEventHandler<HTMLDivElement> | undefined = item.onClick && (
-                ()=>{
+                (event)=>{
+                  event.stopPropagation()
                   item.onClick?.();
                   setIsOpened(false)
                 }
@@ -62,12 +63,18 @@ export const DropdownMenu = ({
                   key={`item-${index}`} 
                   role={"button"} 
                   onClick={handleClick} 
+                  onMouseOver={(event)=>{event.stopPropagation()}}
                   sx={{
                     paddingX: 2,
                     paddingY: 1,
                     cursor: handleClick ? "pointer" : undefined,
                     "&:hover": {
                       backgroundColor: handleClick ? "dropdownMenu.hover" : undefined, 
+                    },
+                    "&:not(:last-child)": {
+                      borderBottomStyle: "solid",
+                      borderColor: "dropdownMenu.border",
+                      borderWidth: "1px",
                     }
                   }}>
                   {item.children}
